@@ -34,4 +34,4 @@ function countDay3P1() {
     })
     return gammaSum * epsilonSum;
 }
-console.log(countDay3P1())
+console.log(countDay3P1());
