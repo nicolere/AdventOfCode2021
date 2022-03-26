@@ -2,20 +2,20 @@ var utilModule = require("../../modules/utility-functions")
 
 function bingoDay4() {
 
-    var array = utilModule.arrayFromFile("./input.txt");
-    var numberToDraw = array.shift().split(',').map(num => parseInt(num, 10));
+    const array: string[] = utilModule.arrayFromFile("./input.txt");
+    const numberToDraw = array.shift().split(',').map(num => parseInt(num, 10));
 
-    var boards = [];
+    const boards = [];
     let board;
 
-    for(line of array){
+    array.forEach((line: string) => {
         if(line === ''){
             board = [];
             boards.push(board);
-        } else {
+        }else {
             board.push(line.trim().split(/\s+/).map(num => parseInt(num, 10)));
         }
-    }
+    })
     const winners = [];
 
     for(let i = 0; i < numberToDraw.length; i++){
@@ -34,7 +34,7 @@ function bingoDay4() {
     console.log(winners[winners.length-1]);
 }   
 
-function checkBoard(nums, board){
+function checkBoard(nums, board): [boolean, number] {
     const hits = new Array(board[0].length * 2).fill(0);
     let notHitSum = 0;
     let win = false;
