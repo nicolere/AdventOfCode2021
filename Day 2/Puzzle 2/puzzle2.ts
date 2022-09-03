@@ -1,10 +1,10 @@
-var utilModule = require("../../modules/utility-functions")
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function countDay2P2() {
-    var array = utilModule.arrayFromFile("./input.txt");
-    var depth = 0, horizontal = 0, aim = 0;
+function countDay2P2(): number {
+    const array = arrayFromFile("./input.txt", "\n");
+    let depth = 0, horizontal = 0, aim = 0;
 
-    array.forEach(item => {
+    array.forEach((item: string) => {
         if (item.includes('down')) {
             aim += Number(item.split(" ")[1])
         }

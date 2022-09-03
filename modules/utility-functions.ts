@@ -1,8 +1,6 @@
-var fs = require("fs");
+import * as fs from "fs";
 
-function arrayFromFile(filepath) {
-    var input = fs.readFileSync(filepath, "utf-8");
-    return input.split("\n");
+export function arrayFromFile(filepath: string, separator: string): string[] {
+    const input = fs.readFileSync(filepath, "utf-8");
+    return input.split(separator);
 }
-
-exports.arrayFromFile = arrayFromFile;

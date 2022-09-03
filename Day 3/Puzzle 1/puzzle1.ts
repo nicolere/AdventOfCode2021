@@ -1,14 +1,14 @@
-var utilModule = require("../../modules/utility-functions")
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function countDay3P1() {
-    var array = utilModule.arrayFromFile("./input.txt");
-    var zeroCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    var unCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    var gamma = [], epsilon = [];
-    var gammaSum = 0, epsilonSum = 0;
+function countDay3P1(): number {
+    const array = arrayFromFile("./input.txt", "\n");
+    const zeroCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const unCounter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const gamma: number[] = [], epsilon: number[] = [];
+    let gammaSum = 0, epsilonSum = 0;
 
-    array.forEach(item => {
-        var splitString = item.split('');
+    array.forEach((item: string) => {
+        const splitString = item.split('');
         splitString.forEach((char, index) => {
             if (Number(char) == 1) {
                 unCounter[index]++

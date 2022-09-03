@@ -1,17 +1,16 @@
-var utilModule = require("../../modules/utility-functions");
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function hydroThermalVentureDay5() {
-    let array: string[] = []
-    array = utilModule.arrayFromFile("./input.txt");
+function hydroThermalVentureDay5(): void {
+    let array: string[] = arrayFromFile("./input.txt", "\n");
     const finalArray: number[][] = 
         array
         .map(line => line.split(/[^\d]+/).map(val => parseInt(val, 10)))
         .filter((line: number[]) => line.length === 4);
 
-    const map = [];
+    const map: any[] = [];
     let cpt = 0;
 
-    const setPoint = (x, y) => {
+    const setPoint = (x:number, y:number) => {
             map[y] = map[y] || [];
             map[y][x] = map[y][x] || 0;
             return ++map[y][x];

@@ -1,12 +1,12 @@
-var utilModule = require("../../modules/utility-functions")
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function countDay3P2() {
-    var array = utilModule.arrayFromFile("./input.txt");
-    var lifeSupportRating = 0, oxygenGeneratorRating = 0, co2ScrubberRating = 0;
-    var position = 0;
-    var mostCommonBit, leastCommonBit;
-    var listForOxygenGenerator = [];
-    var listForCo2Scrubber = [];
+function countDay3P2(): number {
+    const array = arrayFromFile("./input.txt", "\n");
+    let lifeSupportRating = 0, oxygenGeneratorRating = 0, co2ScrubberRating = 0;
+    let position = 0;
+    let mostCommonBit: string, leastCommonBit: string;
+    let listForOxygenGenerator: string[] = [];
+    let listForCo2Scrubber:string[] = [];
 
     [mostCommonBit, leastCommonBit] = commonBitAtPosition(array, position);
 
@@ -31,12 +31,12 @@ function countDay3P2() {
     return lifeSupportRating;
 }
 
-function commonBitAtPosition(list, position) {
-    var zeroesAndOnes = [0, 0];
-    var mostCommonBit = '';
-    var leastCommonBit = '';
+function commonBitAtPosition(list: string[], position: number): [string, string] {
+    const zeroesAndOnes = [0, 0];
+    let mostCommonBit = '';
+    let leastCommonBit = '';
 
-    list.forEach(val => {
+    list.forEach((val: string) => {
         zeroesAndOnes[+val.split('')[position]]++
     });
 
@@ -50,7 +50,7 @@ function commonBitAtPosition(list, position) {
     return [mostCommonBit, leastCommonBit]
 }
 
-function filterList(list, position, commonBit) {
+function filterList(list: string[], position: number, commonBit: string): string[] {
     if (list.length === 1) {
         return list;
     }

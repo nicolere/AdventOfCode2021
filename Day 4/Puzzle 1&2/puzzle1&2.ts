@@ -1,12 +1,17 @@
-var utilModule = require("../../modules/utility-functions")
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function bingoDay4() {
+interface WinnerModel {
+    winnerBoard: number;
+    score: number;
+    lastNumberDrawn: number;
+}
 
-    const array: string[] = utilModule.arrayFromFile("./input.txt");
-    const numberToDraw = array.shift().split(',').map(num => parseInt(num, 10));
+function bingoDay4(): void {
+    const array: string[] = arrayFromFile("./input.txt", "\n");
+    const numberToDraw = array.shift()!.split(',').map(num => parseInt(num, 10));
 
-    const boards = [];
-    let board;
+    const boards: number[][][] = [];
+    let board: number[][];
 
     array.forEach((line: string) => {
         if(line === ''){
@@ -16,7 +21,7 @@ function bingoDay4() {
             board.push(line.trim().split(/\s+/).map(num => parseInt(num, 10)));
         }
     })
-    const winners = [];
+    const winners: WinnerModel[]  = [];
 
     for(let i = 0; i < numberToDraw.length; i++){
         for(let j = 0; j < boards.length; j++){
@@ -24,7 +29,12 @@ function bingoDay4() {
                 const [win, notHitSum] = checkBoard(numberToDraw.slice(0, i), boards[j]);
 
                 if(win){
-                    winners.push({winnerBoard:  j+1, score: notHitSum * numberToDraw[i-1], lastNumberDrawn: numberToDraw[i-1]})
+                    const winner: WinnerModel = {
+                        winnerBoard: j+1,
+                        score: notHitSum * numberToDraw[i-1],
+                        lastNumberDrawn: numberToDraw[i-1]
+                    };
+                    winners.push(winner)
                     boards[j] = [];
                 }
             }
@@ -34,7 +44,7 @@ function bingoDay4() {
     console.log(winners[winners.length-1]);
 }   
 
-function checkBoard(nums, board): [boolean, number] {
+function checkBoard(nums: number[], board: number[][]): [boolean, number] {
     const hits = new Array(board[0].length * 2).fill(0);
     let notHitSum = 0;
     let win = false;

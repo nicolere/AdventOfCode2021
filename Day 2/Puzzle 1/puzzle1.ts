@@ -1,10 +1,10 @@
-var utilModule = require("../../modules/utility-functions")
+import { arrayFromFile } from '../../modules/utility-functions';
 
-function countDay2P2() {
-    var array = utilModule.arrayFromFile("./input.txt");
-    var depth = 0, horizontal = 0;
+function countDay2P1(): number {
+    const array = arrayFromFile("./input.txt", "\n");
+    let depth = 0, horizontal = 0;
 
-    array.forEach(item => {
+    array.forEach((item: string) => {
         if (item.includes('forward')) {
             horizontal += Number(item.split(" ")[1])
         }
@@ -17,4 +17,4 @@ function countDay2P2() {
     });
     return horizontal * depth;
 }
-console.log(countDay2P2());
+console.log(countDay2P1());
